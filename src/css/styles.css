@@ -1,0 +1,49 @@
+body {
+    padding: 8px;
+    font-family: arial, sans-serif;
+    background-color: #17223b;
+    color: #FF9999;
+}
+
+*:focus {
+    outline-color: #FF9999;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+td, th {
+    border: 2px solid #ABB2BF;
+    text-align: left;
+    padding: 8px;
+    font-size: 20px;
+}
+
+#spinner {
+    border: 16px solid #5C6475; /* Light grey */
+    border-top: 16px solid #FF9999; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s ease-in-out infinite;
+    position: fixed; /* or absolute */
+    top: 45%;
+    left: 50%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
