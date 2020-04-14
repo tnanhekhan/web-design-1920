@@ -5,10 +5,6 @@ body {
     color: #FF9999;
 }
 
-*:focus {
-    outline-color: #FF9999;
-}
-
 caption {
     font-weight: bold;
     font-size: 28px;
