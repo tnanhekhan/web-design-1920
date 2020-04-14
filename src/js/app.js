@@ -4,7 +4,7 @@ const dateComparator = (a, b) => {
 };
 const tableRows = result => {
     return `<tr tabindex="-1">
-                    <td> <time datetime="${result.date}">${result.date}.</time></td>
+                    <td> <time datetime="${result.date}">${new Date(result.date).toLocaleDateString()}.</time></td>
                     <td> ${result.confirmed} confirmed.</td>
                     <td> ${result.deaths} deaths.</td>
                     <td> ${result.recovered} recovered.</td>
@@ -61,6 +61,12 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                                 if (previousNode) {
                                     previousNode.focus()
                                 }
+                                break;
+                            case "Home":
+                                document.activeElement.blur()
+                                break;
+                            case "End":
+                                document.activeElement.blur()
                                 break;
                             default:
                                 return; // Quit when this doesn't handle the key event.
