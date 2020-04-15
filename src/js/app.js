@@ -4,10 +4,10 @@ const dateComparator = (a, b) => {
 };
 const tableRows = result => {
     return `<tr tabindex="-1">
-                    <td> <time datetime="${result.date}">${new Date(result.date).toLocaleDateString()}.</time></td>
-                    <td> ${result.confirmed} confirmed.</td>
-                    <td> ${result.deaths} deaths.</td>
-                    <td> ${result.recovered} recovered.</td>
+                    <td> <time datetime="${result.date}">${new Date(result.date).toLocaleDateString()}</time></td>
+                    <td> ${result.confirmed} bevestigd</td>
+                    <td> ${result.deaths} doden</td>
+                    <td> ${result.recovered} hersteld</td>
                      </tr>`
 };
 
@@ -22,12 +22,12 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                     let dataArray = json[country].slice(Math.max(json[country].length - 15, 1))
                     let table = document.createElement("table");
                     table.setAttribute("role", "grid")
-                    table.innerHTML = `<caption tabindex="0"> ${country} Covid-19 Cases</caption>
+                    table.innerHTML = `<caption tabindex="0"> ${country} Covid-19 gevallen</caption>
                                         <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Confirmed</th>
-                                            <th scope="col">Deaths</th>
-                                            <th scope="col">Recovered</th>
+                                            <th scope="col">Datum</th>
+                                            <th scope="col">Bevestigd</th>
+                                            <th scope="col">Doden</th>
+                                            <th scope="col">Hersteld</th>
                                         </tr>
                                         ${dataArray.map(tableRows).join("")}`
 
