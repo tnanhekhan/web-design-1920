@@ -75,8 +75,8 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                         // Cancel the default action to avoid it being handled twice
                         event.preventDefault();
                     }, true);
-
                     document.activeElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+                    throw Error()
                 });
             })
     });
