@@ -29,7 +29,7 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                 Object.keys(json).sort().forEach((country, index) => {
                     if (country === "Netherlands") {
 
-                        let dataArray = json[country].slice(Math.max(json[country].length - 15, 1))
+                        let dataArray = json[country].slice(Math.max(json[country].length - 10, 1))
                         for (let i = 0; i < dataArray.length; i++) {
                             const date = new Date(dataArray[i].date)
                             dataArray[i]["index"] = (i + 1);
