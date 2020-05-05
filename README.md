@@ -79,4 +79,6 @@ Ik wist bijvoorbeeld niet echt wat ik moest vragen aan Roger. Als ik iets test k
 
 Het is ook best belangrijk om je testpersoon op zijn gemak te stellen, hierdoor is de testpersoon wellicht spraakzamer en krijg je meer informatie. Dit kan worden bereikt door middel van een introductie of iets dergelijks, iets wat ik niet echt heb gedaan tijdens mijn tests. 
 
+Dat Roger zijn scherm deelde was ontzettend handig voor het remote testen. Hierdoor heb kan je ook een beetje de handelingen van een testpersoon zien en hoe de testpersoon zijn computer gebruikt. Hierdoor ben ik bijv. erachter gekomen dat Roger zijn scherm wat heeft ingezoomd en dat Roger vaak dark-mode gebruikt.
+
 
