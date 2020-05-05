@@ -21,6 +21,31 @@ const tableRows = result => {
         "</tr>"
 };
 
+function parseDate(date) {
+    const parsedDate = new Date(date);
+    return `${parsedDate.getDate()} ${months[parsedDate.getMonth()]}  ${parsedDate.getFullYear()}`;
+}
+
+function parseDateIso(date) {
+    const parsedDate = new Date(date);
+    let month;
+    let day;
+
+    if (parsedDate.getMonth() < 9) {
+        month = Number("0" + parsedDate.getMonth())
+    } else {
+        month = parsedDate.getMonth()
+    }
+
+    if (parsedDate.getDate() < 9) {
+        day = Number("0" + parsedDate.getDate())
+    } else {
+        parsedDate.getDate()
+    }
+
+    return `${parsedDate.getFullYear()}-${month}-${day}`;
+}
+
 fetch("https://pomber.github.io/covid19/timeseries.json")
     .then(result => {
         result.json()
@@ -28,7 +53,6 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                 spinner.style.display = "none"
                 Object.keys(json).sort().forEach((country, index) => {
                     if (country === "Netherlands") {
-
                         let dataArray = json[country].slice(Math.max(json[country].length - 10, 1))
                         for (let i = 0; i < dataArray.length; i++) {
                             const date = new Date(dataArray[i].date)
@@ -51,51 +75,51 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                                                 </tr> 
                                         ${dataArray.map(tableRows).join("")}`
 
-                        document.body.appendChild(table);
+                        const latestData = dataArray[dataArray.length - 1];
+                        const penultimateData = dataArray[dataArray.length - 2];
+                        const antePenultimateData = dataArray[dataArray.length - 3];
 
-                        window.addEventListener("keydown", event => {
-                            const currentNode = event.target
-                            let nextNode;
-                            let previousNode;
-                            if (currentNode.tagName === "CAPTION") {
-                                nextNode = currentNode.parentNode.rows[1]
-                                previousNode = null
-                            } else {
-                                nextNode = currentNode.parentNode.rows[currentNode.rowIndex + 1]
-                                previousNode = currentNode.parentNode.rows[currentNode.rowIndex - 1]
-                            }
+                        document.getElementById("status-title").innerText = `Covid-19 status van ${parseDate(dataArray[dataArray.length - 1].date)}`
+                        if (latestData.confirmed - penultimateData.confirmed > penultimateData.confirmed - antePenultimateData.confirmed) {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="confirmed-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.confirmed - penultimateData.confirmed} bijgekomen gevallen tegenover, de ${penultimateData.confirmed - antePenultimateData.confirmed} bijgekomen gevallen van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(latestData.confirmed - penultimateData.confirmed) - (penultimateData.confirmed - antePenultimateData.confirmed)} meer"><i class="arrow up"></i> ${latestData.confirmed - penultimateData.confirmed} bijgekomen gevallen.</a>`)
+                        } else {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="confirmed-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.confirmed - penultimateData.confirmed} bijgekomen gevallen tegenover, de ${penultimateData.confirmed - antePenultimateData.confirmed} bijgekomen gevallen van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(penultimateData.confirmed - antePenultimateData.confirmed) - (latestData.confirmed - penultimateData.confirmed)} minder"><i class="arrow down"></i> ${latestData.confirmed - penultimateData.confirmed} bijgekomen gevallen.</a>`)
+                        }
 
-                            if (event.defaultPrevented) {
-                                return; // Do nothing if the event was already processed
-                            }
+                        if (latestData.deaths - penultimateData.deaths > penultimateData.deaths - antePenultimateData.deaths) {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="deaths-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.deaths - penultimateData.deaths} bijgekomen doden tegenover, de ${penultimateData.deaths - antePenultimateData.deaths} bijgekomen doden van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(latestData.deaths - penultimateData.deaths) - (penultimateData.deaths - antePenultimateData.deaths)} meer"><i class="arrow up"></i> ${latestData.deaths - penultimateData.deaths} bijgekomen doden.</a>`)
+                        } else {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="deaths-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.deaths - penultimateData.deaths} bijgekomen doden tegenover, de ${penultimateData.deaths - antePenultimateData.deaths} bijgekomen doden van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(penultimateData.deaths - antePenultimateData.deaths) - (latestData.deaths - penultimateData.deaths)} minder"><i class="arrow down"></i> ${latestData.deaths - penultimateData.deaths} bijgekomen doden.</a>`)
+                        }
 
-                            switch (event.key) {
-                                case "Down": // IE/Edge specific value
-                                case "F10":
-                                    if (nextNode) {
-                                        nextNode.focus()
-                                    }
-                                    break;
-                                case "Up": // IE/Edge specific value
-                                case "F9":
-                                    if (previousNode) {
-                                        previousNode.focus()
-                                    }
-                                    break;
-                                case "Home":
-                                    document.activeElement.blur()
-                                    break;
-                                case "End":
-                                    document.activeElement.blur()
-                                    break;
-                                default:
-                                    return; // Quit when this doesn't handle the key event.
-                            }
+                        if (latestData.recovered - penultimateData.recovered < penultimateData.recovered - antePenultimateData.recovered) {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="recovered-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.recovered - penultimateData.recovered} bijgekomen herstelden tegenover, de ${penultimateData.recovered - antePenultimateData.recovered} bijgekomen herstelden van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(latestData.recovered - penultimateData.recovered) - (penultimateData.recovered - antePenultimateData.recovered)} minder"><i class="arrow up"></i> ${latestData.recovered - penultimateData.recovered} bijgekomen herstelden.</a>`)
+                        } else {
+                            document.getElementById("increase").insertAdjacentHTML("beforeend", `<a href="#" id="recovered-delta" aria-label="Op ${parseDate(latestData.date)} waren er ${latestData.recovered - penultimateData.recovered} bijgekomen herstelden tegenover, de ${penultimateData.recovered - antePenultimateData.recovered} bijgekomen herstelden van ${parseDate(penultimateData.date)}. Dat is een verschil van ${(penultimateData.recovered - antePenultimateData.recovered) - (latestData.recovered - penultimateData.recovered)} meer"><i class="arrow down"></i> ${latestData.recovered - penultimateData.recovered} bijgekomen herstelden.</a>`)
+                        }
 
-                            // Cancel the default action to avoid it being handled twice
-                            event.preventDefault();
-                        }, true);
-                        document.activeElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+                        document.getElementById("total").insertAdjacentHTML("beforeend", `<a href="#">Totaal: ${latestData.confirmed} gevallen</a>`)
+                        document.getElementById("total").insertAdjacentHTML("beforeend", `<a href="#">Totaal: ${latestData.deaths} doden</a>`)
+                        document.getElementById("total").insertAdjacentHTML("beforeend", `<a href="#">Totaal: ${latestData.recovered} herstelden</a>`)
+
+                        let url = 'http://newsapi.org/v2/top-headlines?' +
+                            'q=Corona&' +
+                            'q=Coronavirus&' +
+                            // 'from=' + (parseDateIso(latestData.date)) + '&' +
+                            'country=nl&' +
+                            'apiKey=3b6f0e89d5fc46afbe5d32169d5317ee';
+                        let req = new Request(url);
+                        document.getElementById("articles-title").innerText = `Relevante Covid-19 artikelen van ${parseDate(latestData.date)}`
+                        fetch(req)
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then(data => {
+                                data.articles.forEach(article => {
+                                    document.getElementById("articles-container")
+                                        .insertAdjacentHTML("beforeend", `<a href="${article.url}">${article.source.name}: ${article.title} </a>`)
+                                });
+                            });
                     }
                 });
             })

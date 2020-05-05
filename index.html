@@ -8,9 +8,26 @@
   <title>Toegankelijke Covid 19 Tabel</title>
 </head>
 <body>
-<h1>Covid 19 gevallen in Nederland</h1>
-<h2>Gebruik de pijltjestoetsen om de tabel per vak op te lezen of gebruik Tab / Shift + Tab om de tabel per rij op te lezen.</h2>
+<h1>Nederland Covid 19 Dashboard</h1>
+<h3>Gebruik Tab of Shift + Tab om de data door Supernova op te lezen.</h3>
 <div id="spinner" title="loading"></div>
+<div id="content">
+  <div id="current-status">
+    <h2 id="status-title"></h2>
+    <div id="status">
+      <div id="increase">
+      </div>
+      <div id="total">
+      </div>
+    </div>
+  </div>
+  <div id="articles">
+    <h2 id="articles-title"></h2>
+    <div id="articles-container">
+    </div>
+  </div>
+</div>
+<script type="module" src="src/js/data.js"></script>
 <script type="module" src="src/js/app.js"></script>
 </body>
 </html>
