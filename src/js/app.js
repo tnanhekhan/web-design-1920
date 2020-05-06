@@ -102,7 +102,7 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                         document.getElementById("total").insertAdjacentHTML("beforeend", `<a href="#">Totaal: ${latestData.deaths} doden</a>`)
                         document.getElementById("total").insertAdjacentHTML("beforeend", `<a href="#">Totaal: ${latestData.recovered} herstelden</a>`)
 
-                        let url = 'http://newsapi.org/v2/top-headlines?' +
+                        let url = 'https://newsapi.org/v2/top-headlines?' +
                             'q=Corona&' +
                             'q=Coronavirus&' +
                             // 'from=' + (parseDateIso(latestData.date)) + '&' +
