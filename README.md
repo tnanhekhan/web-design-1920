@@ -28,15 +28,17 @@ Roger gebruikt tegenwoordig screenreaders omdat lezen hem veel energie kost. De 
 Roger gebruikt Supernova op een Windows pc. De browser die hij gebruikt op zijn pc is Google Chrome. Qua mobiele apparaten heeft hij een iPhone 11 Pro met daarop Safari. 
 
 ### Ignore Conventions
-Ik gebruikte bijvoorbeeld links (`<a>` tags) om elementen na te bootsen waardoor er doorheen getabd kan worden en waardoor deze elementen opgelezen kunnen worden door de screenreader. Niet echt de bedoeling van een link tag natuurlijk.
+Ik gebruikte bijvoorbeeld links (`<a>` tags) om elementen na te bootsen waardoor er doorheen getabd kan worden en waardoor deze elementen opgelezen kunnen worden door de screenreader. Niet echt de bedoeling van een link tag natuurlijk. Volgens [deze link](https://www.powermapper.com/tests/screen-readers/ua/ua-dolphin-ie/) is Supernova (Dolphin) toch een van de screenreaders die het minste qua aria-labels ondersteund. Hierdoor was het wel puzzelen wat voor elementen ik moest gebruiken, maar ik ben uiteindelijk toch op de (`<a>` tags) uitgekomen om te gebruiken voor de screenreader.
 
 ### Prioritise Identity
 Roger is een beeldhouwer dus dacht ik om de achtergrond van de website een stenen textuur te geven. Hierdoor is de site toch iets persoonlijker voor Roger geworden.
 
+Het was best lastig om aan dit gedeelte van Exclusive Design te voldoen. Buiten om dat Roger een beeldhouwer is, weet ik niet echt wat voor interesses hij verder heeft. 
+
 ### Add Nonsense
 Ik heb bij de aria-labels van de links hier een daar willekeurige komma's en punten geplaatst. Hieruit blijkt dat de screenreader veel natuurlijker en menselijker klinkt dan zonder met de willekeurige interpunctie.
 
-Afhankelijk van of de het aantal gevallen van covid-19 zegt de screenreader als het dalend is dat "het lekker gaat" en als het aantal gevallen stijgend is dat "het niet goed gaat".
+Afhankelijk van of de het aantal gevallen van covid-19 zegt de screenreader als het dalend is dat "het lekker gaat" en als het aantal gevallen stijgend is dat "het niet goed gaat". Ook zijn er pijltjes links van de data die een dalende of stijgende trend qua gevallen aangeeft.
 
 ## Tests
 ### Test 1 (08-04-2020)
@@ -109,9 +111,9 @@ Verder heb ik de titel- en ondertitelbalk kleiner gemaakt zodat deze minder vert
 ## Conclusie
 Om eerlijk te zijn vond ik het testen nogal lastig. Ik ben geen designer dus weet ik niet echt hoe je het beste een design moet testen. Dat ik samen met iemand met een beperking moet testen is lastig en het feit dat dit remote moet maakt dit nog moeilijker. 
 
-Ik wist bijvoorbeeld niet echt wat ik moest vragen aan Roger. Als ik iets test, kijk ik meer naar de handeling van de testpersoon dan wat de testpersoon zegt. Sinds het testen remote ging kon ik dus eigenlijk niet naar de handelingen van Roger kijken. Ik had op zich kunnen vragen dat hij hardop ging zeggen welke toetsen / toetsencombinaties hij bijv. indrukt. De Supernova screenreader die overschrijft alle standaard toetsencombinaties en je hebt dus niet echt de optie om je eigen toetsencombinaties te implementeren omdat er niet echt duidelijke documentatie is welke nou gebruikt wordt door Supernova.
+Ik wist bijvoorbeeld niet echt wat ik moest vragen aan Roger. Als ik iets test, kijk ik meer naar de handeling van de testpersoon dan wat de testpersoon zegt. Sinds het testen remote ging kon ik dus eigenlijk niet naar de handelingen van Roger kijken. Ik wou bijvoorbeeld weten welke shortcuts / toetsen hij gebruikt. De Supernova screenreader die overschrijft alle standaard toetsencombinaties en je hebt dus niet echt de optie om je eigen toetsencombinaties te implementeren. Ik had op zich kunnen vragen dat hij hardop ging zeggen welke toetsen / toetsencombinaties hij bijv. indrukt.
 
-Het is ook best belangrijk om je testpersoon op zijn gemak te stellen, hierdoor is de testpersoon wellicht spraakzamer en krijg je meer informatie. Dit kan worden bereikt door middel van een introductie of iets dergelijks, iets wat ik niet echt heb gedaan tijdens mijn tests. 
+Het is mij ook opgevallen dat het best belangrijk is om je testpersoon op zijn gemak te stellen, hierdoor is de testpersoon spraakzamer en krijg je meer informatie. Dit kan worden bereikt door middel van een introductie of iets dergelijks, iets wat ik niet echt heb gedaan tijdens mijn tests. 
 
 Dat Roger zijn scherm deelde was ontzettend handig voor het remote testen. Hierdoor kan je ook een beetje de handelingen van een testpersoon zien en hoe de testpersoon zijn computer gebruikt. Hierdoor ben ik bijv. erachter gekomen dat Roger zijn scherm wat heeft ingezoomd en dat Roger vaak dark-mode gebruikt.
 
